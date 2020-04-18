@@ -3,6 +3,10 @@ $SaveFile = $PSScriptRoot+"\save00.ff7"
 # Get User ID
 $UserIdScript = $PSScriptRoot+"\ff7_get_user_id.ps1"
 $UserId = &$UserIdScript
+if ($UserId -eq "") {
+    Write-Error -Message "Could not find User ID" -Category InvalidData -ErrorId "user_id_empty"
+    break
+}
 
 # Calculate checksum
 # Checksum = md5(save_file + user_id)
