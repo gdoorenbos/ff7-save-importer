@@ -1,5 +1,4 @@
 $SaveFile = "save00.ff7"
-$md5File  = "save.md5"
 
 # Get User ID
 $UserIdScript = $PSScriptRoot+"\ff7_get_user_id.ps1"
@@ -7,10 +6,11 @@ $UserId = &$UserIdScript
 
 # Calculate checksum
 # Checksum = md5(save_file + user_id)
-Copy-Item -Path $SaveFile -Destination $md5File
-Add-Content -Path $md5File -Value $UserID -NoNewline
-$Hash = (Get-FileHash -Path $md5File -Algorithm md5).Hash.ToLower()
-Remove-Item -Path $md5File
+$md5 = New-Object -TypeName System.Security.Cryptography.MD5CryptoServiceProvider
+$utf8 = New-Object -TypeName System.Text.UTF8Encoding
+$bytes = [System.IO.File]::ReadAllBytes($SaveFile) + $utf8.GetBytes($UserId)
+$hash = [System.BitConverter]::ToString($md5.ComputeHash($bytes))
+$hash = $hash.replace("-", "").ToLower()
 
 # print checksum
-Write-Output $Hash
+Write-Output $hash
