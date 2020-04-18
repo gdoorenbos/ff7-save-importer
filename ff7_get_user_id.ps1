@@ -2,7 +2,7 @@ $SteamDir = Get-ChildItem ([environment]::getfolderpath("mydocuments"))"Square E
 $UserId = ""
 
 foreach ($child in $SteamDir) {
-    if ($child.Name -match "user_*") {
+    if ($child.Name -match "user_[0-9]+") {
         $UserId = $child.Name.trim("user_")
     }
 }
