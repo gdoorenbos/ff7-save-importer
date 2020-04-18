@@ -1,4 +1,4 @@
-$SaveFile = "save00.ff7"
+$SaveFile = $PSScriptRoot+"\save00.ff7"
 
 # Get User ID
 $UserIdScript = $PSScriptRoot+"\ff7_get_user_id.ps1"
