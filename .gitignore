@@ -1,3 +1,6 @@
 # ignore save and backup files
 save00.ff7
 *.bak
+
+# python stuff
+__pycache__
