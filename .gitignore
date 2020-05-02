@@ -4,3 +4,7 @@ save00.ff7
 
 # python stuff
 __pycache__
+
+# Google Drive API
+credentials.json
+token.pickle
